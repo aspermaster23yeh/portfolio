@@ -1,116 +1,60 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import type { Project } from "@/data/projects";
+import type { DesktopFolder } from "@/data/folders";
 
 type ProjectCardProps = {
-  project: Project;
-  onSelect: (project: Project) => void;
+  folder: DesktopFolder;
+  itemCount: number;
+  onSelect: (folder: DesktopFolder) => void;
 };
 
-export function ProjectCard({ project, onSelect }: ProjectCardProps) {
+export function ProjectCard({ folder, itemCount, onSelect }: ProjectCardProps) {
   return (
-    <motion.article
+    <motion.button
+      type="button"
       layout
-      layoutId={`card-${project.id}`}
-      initial={{ opacity: 0, scale: 0.96 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-      whileHover={{ y: -4, scale: 1.01 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={() => onSelect(project)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onSelect(project);
-        }
-      }}
-      role="button"
-      tabIndex={0}
-      className="group cursor-pointer overflow-hidden rounded-[18px] border border-hairline bg-canvas transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-focus"
+      layoutId={`folder-${folder.id}`}
+      initial={{ opacity: 0, scale: 0.92, y: 12 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.92 }}
+      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      whileHover={{ y: -6, scale: 1.04 }}
+      whileTap={{ scale: 0.96 }}
+      onClick={() => onSelect(folder)}
+      className="group flex flex-col items-center gap-2 rounded-[18px] p-3 text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-focus"
+      aria-label={`Abrir carpeta ${folder.name}`}
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-parchment">
-        <ProjectMockup title={project.title} category={project.category} />
-      </div>
-
-      <div className="space-y-2 p-6">
-        <div className="flex items-baseline justify-between gap-3">
-          <h3 className="text-[17px] font-semibold tracking-[-0.374px] text-ink">
-            {project.title}
-          </h3>
-          <span className="shrink-0 text-[12px] tracking-[-0.12px] text-ink-muted-48">
-            {project.year}
+      <div className="relative aspect-[2008/1708] w-full max-w-[132px] sm:max-w-[148px]">
+        <motion.div
+          className="absolute inset-0"
+          transition={{ type: "spring", stiffness: 320, damping: 22 }}
+        >
+          <Image
+            src={folder.icon}
+            alt=""
+            fill
+            sizes="148px"
+            className="object-contain drop-shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition-transform duration-500 group-hover:drop-shadow-[0_18px_36px_rgba(0,0,0,0.28)]"
+            priority={folder.id === "ventures" || folder.id === "fullstack"}
+          />
+        </motion.div>
+        {itemCount > 0 && (
+          <span className="absolute -right-1 -top-1 flex h-6 min-w-6 items-center justify-center rounded-full bg-ink px-1.5 text-[11px] font-semibold text-white shadow-sm">
+            {itemCount}
           </span>
-        </div>
-        <p className="text-[14px] leading-[1.43] tracking-[-0.224px] text-ink-muted-80">
-          {project.description}
-        </p>
-        <div className="flex flex-wrap gap-2 pt-2">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full bg-parchment px-3 py-1.5 text-[12px] tracking-[-0.12px] text-ink-muted-80"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        <p className="pt-1 text-[14px] text-primary">Saber más</p>
-      </div>
-    </motion.article>
-  );
-}
-
-function ProjectMockup({
-  title,
-  category,
-}: {
-  title: string;
-  category: Project["category"];
-}) {
-  return (
-    <div className="absolute inset-0 flex items-center justify-center p-8">
-      <div className="relative w-full max-w-[280px]">
-        {category === "mobile" ? (
-          <div className="product-shadow mx-auto w-[120px] rounded-[22px] border border-black/10 bg-canvas p-2 transition-transform duration-500 group-hover:scale-[1.03]">
-            <div className="aspect-[9/16] overflow-hidden rounded-[16px] bg-parchment">
-              <div className="flex h-full flex-col justify-between p-3">
-                <div className="space-y-2">
-                  <div className="h-1.5 w-8 rounded-full bg-chip" />
-                  <div className="h-2 w-16 rounded-full bg-ink/80" />
-                  <div className="h-1.5 w-12 rounded-full bg-chip" />
-                </div>
-                <div className="space-y-1.5">
-                  <div className="h-8 rounded-lg bg-canvas" />
-                  <div className="h-8 rounded-lg bg-canvas" />
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="product-shadow overflow-hidden rounded-[8px] border border-black/10 bg-canvas transition-transform duration-500 group-hover:scale-[1.03]">
-            <div className="flex items-center gap-1.5 border-b border-hairline px-3 py-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-chip" />
-              <span className="h-1.5 w-1.5 rounded-full bg-chip" />
-              <span className="h-1.5 w-1.5 rounded-full bg-chip" />
-            </div>
-            <div className="space-y-3 p-4">
-              <div className="h-2.5 w-2/3 rounded-full bg-ink/85" />
-              <div className="h-1.5 w-full rounded-full bg-hairline" />
-              <div className="h-1.5 w-5/6 rounded-full bg-hairline" />
-              <div className="mt-4 grid grid-cols-3 gap-2">
-                <div className="aspect-square rounded-lg bg-parchment" />
-                <div className="aspect-square rounded-lg bg-parchment" />
-                <div className="aspect-square rounded-lg bg-parchment" />
-              </div>
-            </div>
-          </div>
         )}
-        <p className="pointer-events-none absolute -bottom-6 left-0 right-0 truncate text-center text-[10px] tracking-[-0.08px] text-ink-muted-48/70">
-          {title}
+      </div>
+
+      <div className="max-w-[140px] space-y-0.5">
+        <p className="truncate text-[13px] font-medium tracking-[-0.16px] text-ink">
+          {folder.label}
+        </p>
+        <p className="truncate text-[11px] tracking-[-0.12px] text-ink-muted-48">
+          {folder.color}
         </p>
       </div>
-    </div>
+    </motion.button>
   );
 }

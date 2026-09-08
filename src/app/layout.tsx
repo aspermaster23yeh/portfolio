@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Michael Robles — CEO de Que Plan App",
+  title: "Michael Robles — CEO de Que Plan App · GDG Leader",
   description:
-    "Portafolio de Michael Robles (@aspermaster23dev), CEO de Que Plan App. Diseño de producto y desarrollo frontend.",
+    "Portafolio de Michael Robles (@aspermaster23dev), CEO de Que Plan App y Google Developer Groups Leader desde 2023. Desarrollador full stack — Flutter, Firebase, Vue, Next.js y más.",
   authors: [{ name: "Michael Robles" }],
 };
 

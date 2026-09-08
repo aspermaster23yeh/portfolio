@@ -42,10 +42,15 @@ export function About() {
               >
                 Que Plan App
               </a>
-              , diseñador de producto y desarrollador frontend. Trabajo en la
+              , diseñador de producto y desarrollador full stack. Trabajo en la
               intersección entre estética e ingeniería: interfaces limpias,
               tipografía clara y experiencias interactivas que se sienten
-              nativas.
+              nativas. Especializado en Flutter, Firebase, Vue y Figma.
+            </p>
+            <p className="mt-4 max-w-lg text-[17px] leading-[1.47] tracking-[-0.374px] text-ink-muted-80">
+              Desde marzo de 2023 soy{" "}
+              <span className="text-ink">Google Developer Groups Leader</span>,
+              impulsando comunidad, aprendizaje y eventos para desarrolladores.
             </p>
             <p className="mt-4 max-w-lg text-[17px] leading-[1.47] tracking-[-0.374px] text-ink-muted-80">
               Mi enfoque se inspira en el diseño de Apple: espacio negativo,
