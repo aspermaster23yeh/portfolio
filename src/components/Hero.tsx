@@ -147,8 +147,8 @@ export function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <a
-          href="#skills"
-          aria-label="Ir a skills"
+          href="#proyectos"
+          aria-label="Ir al escritorio"
           className="flex flex-col items-center gap-2 text-ink-muted-48 transition-opacity hover:opacity-70"
         >
           <span className="text-[12px] tracking-[-0.12px]">Explorar</span>
