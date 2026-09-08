@@ -79,9 +79,9 @@ export const folders: DesktopFolder[] = [
     name: "Marketing & Media Agency",
     label: "Marketing",
     description:
-      "Campañas para empresas y restaurantes, tomas aéreas con drones y contenido visual.",
+      "Contenido orgánico, campañas para marcas y restaurantes, drones y video de alto impacto.",
     focus:
-      "Combinar tecnología con generación de demanda, video y posicionamiento de marca.",
+      "Alcance real en redes, storytelling de marca y generación de demanda con media.",
     icon: "/Folder-5.png",
     color: "Naranja",
   },

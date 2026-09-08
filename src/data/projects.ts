@@ -2,6 +2,18 @@ import type { FolderId } from "./folders";
 
 export type ProjectCategory = Exclude<FolderId, "system-config">;
 
+export type ProjectLink = {
+  label: string;
+  href: string;
+};
+
+export type ProjectMedia = {
+  src: string;
+  alt: string;
+  href?: string;
+  caption?: string;
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -14,47 +26,58 @@ export type Project = {
   role: string;
   accent: string;
   features: string[];
+  links?: ProjectLink[];
+  media?: ProjectMedia[];
 };
 
 export const projects: Project[] = [
   {
     id: "que-plan-app",
     title: "Que Plan App",
-    subtitle: "Marketplace de planes y experiencias",
+    subtitle: "Ecosistema multi-repo de planes y experiencias",
     description:
-      "Startup fundada como CEO: producto mobile, operación y crecimiento.",
+      "Flutter + Vue 3 sobre Firebase — CEO del producto, la infra y el go-to-market.",
     longDescription:
-      "Que Plan App conecta personas con planes y experiencias. Como fundador técnico lidero producto, arquitectura y go-to-market — desde la app Flutter hasta la narrativa de marca y la tracción en Instagram.",
+      "El ecosistema Que Plan está repartido en varios repos: Flutter + Vue 3 sobre Firebase, Cloud Functions en Node, pagos Stripe/Mercado Pago, IA Gemini, hosting en HostGator y tools satélite (generator + Remotion). Como CEO y fundador técnico lidero producto, arquitectura y crecimiento — desde la app móvil hasta la web, la infra y la narrativa de marca (@queplanapp).",
     category: "ventures",
-    tags: ["CEO", "Flutter", "Firebase", "Producto"],
+    tags: [
+      "CEO",
+      "Flutter",
+      "Vue 3",
+      "Firebase",
+      "Stripe",
+      "Gemini",
+    ],
     year: "2023–",
     role: "CEO & Founder",
     accent: "#BD6CDB",
     features: [
-      "Visión de producto y roadmap como fundador técnico",
-      "App mobile en producción con stack Flutter + Firebase",
-      "Posicionamiento de marca y comunidad (@queplanapp)",
-      "Operación end-to-end: producto, tech y crecimiento",
+      "Núcleo: app Flutter (Dart 3, MVVM, go_router) + web Vue 3 (Router, Pinia) + Firebase (Auth, Firestore, Storage, Functions, Messaging, Trigger Email)",
+      "App móvil (que_plan_app_og): Provider/Riverpod/BLoC, sqflite, Google Maps, QR, deep links, widgets home y push notifications",
+      "Web (que_plan_web): Stripe + Mercado Pago, Pixi/Three/Maps, GSAP/Motion, PDFs (jsPDF, pdf-lib), Chart.js y SEO con Puppeteer",
+      "Infra (queplan-infraestructura): Functions Node 20/22 — Stripe, Mercado Pago, Gemini, sharp, pdf-lib; Firestore + Storage; email SMTP Titan/HostGator",
+      "Satélites: generator-que-plan (Vue + Express + Gemini + Places) y motion (Remotion + React 19 + MapLibre) para seed y teasers",
+      "Pagos e IA: Stripe Connect Express (ticketing), Mercado Pago y Google Gemini en functions + generator",
     ],
   },
   {
-    id: "second-venture",
-    title: "Studio Venture",
-    subtitle: "Segundo vehículo de producto",
+    id: "estado-limpio",
+    title: "Estado Limpio",
+    subtitle: "Emprendimiento de servicios y producto",
     description:
-      "Empresa en construcción: productos digitales y servicios de ingeniería.",
+      "Venture liderado como CEO: operación, marca y producto digital.",
     longDescription:
-      "Segundo vehículo como fundador: combinar ingeniería de producto con servicios creativos y de sistemas. Enfoque en MVPs rápidos, arquitectura sólida y métricas de negocio desde el día uno.",
+      "Estado Limpio es un emprendimiento que dirijo como CEO: visión de negocio, operación del servicio y producto digital para ordenar la experiencia del cliente. Del posicionamiento de marca a los flujos de reserva, seguimiento y administración — producto e ingeniería al servicio del negocio.",
     category: "ventures",
-    tags: ["CTO", "Producto", "SaaS"],
-    year: "2025",
-    role: "Founder / CTO",
+    tags: ["CEO", "Producto", "Operación", "Marca"],
+    year: "2024–",
+    role: "CEO & Founder",
     accent: "#BD6CDB",
     features: [
-      "Modelo híbrido producto + studio",
-      "Arquitectura lista para escala temprana",
-      "Métricas de tracción como norte de decisión",
-      "Rol dual de visión de negocio e ingeniería",
+      "Dirección como CEO: visión, operación y crecimiento",
+      "Producto digital orientado a clientes y operación interna",
+      "Marca y experiencia de servicio consistentes",
+      "Procesos y herramientas para escalar el negocio",
     ],
   },
   {
@@ -258,6 +281,96 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "pezcallito",
+    title: "Pezcallito",
+    subtitle: "Primera cuenta — contenido orgánico",
+    description:
+      "Marketing orgánico en Instagram y TikTok con picos de hasta 1.6M de vistas.",
+    longDescription:
+      "Pezcallito fue la primera empresa con la que trabajé en marketing y generación de contenido orgánico. Estrategia de piezas para Instagram y TikTok orientada a alcance real: formatos nativos, ritmo de publicación y narrativa de marca que llegó a picos de hasta 1.6 millones de vistas.",
+    category: "marketing",
+    tags: ["Contenido orgánico", "Instagram", "TikTok", "Reels"],
+    year: "2023",
+    role: "Content & Growth",
+    accent: "#F8B254",
+    links: [
+      {
+        label: "Instagram",
+        href: "https://www.instagram.com/pezcallito.tpc/",
+      },
+      {
+        label: "TikTok",
+        href: "https://www.tiktok.com/@pezcallito.tpc1",
+      },
+    ],
+    features: [
+      "Primera cuenta de marketing con la que trabajé de punta a punta",
+      "Contenido orgánico multi-plataforma (Instagram + TikTok)",
+      "Picos de hasta 1.6 millones de vistas en piezas orgánicas",
+      "Formato nativo: reels, clips y storytelling de marca",
+    ],
+  },
+  {
+    id: "latinos-por-europa",
+    title: "Latinos por Europa",
+    subtitle: "Agencia europea — orgánico + leads",
+    description:
+      "Contenido orgánico y captación de leads para ventas en una agencia europea.",
+    longDescription:
+      "Trabajé con Latinos por Europa, una agencia en Europa, en generación de contenido orgánico y embudos orientados a leads de ventas. Piezas nativas para TikTok con foco en alcance, conversión y demanda comercial — no solo vistas, sino contactos cualificados para el negocio.",
+    category: "marketing",
+    tags: ["Contenido orgánico", "TikTok", "Leads", "Ventas"],
+    year: "2023–2024",
+    role: "Content & Growth",
+    accent: "#F8B254",
+    links: [
+      {
+        label: "TikTok",
+        href: "https://www.tiktok.com/@latinosporeuropa8",
+      },
+    ],
+    features: [
+      "Agencia europea: contenido orgánico multi-formato",
+      "Estrategia de captación de leads orientada a ventas",
+      "Piezas nativas en TikTok con CTA comerciales claros",
+      "Puente entre alcance orgánico y funnel de conversión",
+    ],
+  },
+  {
+    id: "vip-solutions",
+    title: "VIP Solutions",
+    subtitle: "Renta de camionetas de lujo — Puerto Vallarta",
+    description:
+      "Contenido orgánico para renta de camionetas de lujo en Puerto Vallarta.",
+    longDescription:
+      "Con VIP Solutions trabajé la generación de contenido orgánico para una marca de renta de camionetas de lujo en Puerto Vallarta. Piezas para TikTok orientadas a deseo, posicionamiento premium y demanda local — mostrar el producto en contexto real para captar interés y leads de renta.",
+    category: "marketing",
+    tags: ["Contenido orgánico", "TikTok", "Luxury", "Turismo"],
+    year: "2024",
+    role: "Content & Growth",
+    accent: "#F8B254",
+    links: [
+      {
+        label: "TikTok",
+        href: "https://www.tiktok.com/@rentadecamionetasvta",
+      },
+    ],
+    media: [
+      {
+        src: "/vip-solutions-tiktok.jpg",
+        alt: "Pieza de TikTok — renta de camionetas de lujo VIP Solutions",
+        href: "https://www.tiktok.com/@rentadecamionetasvta/video/7536271982577372472",
+        caption: "Ver en TikTok",
+      },
+    ],
+    features: [
+      "Marca de renta de camionetas de lujo en Puerto Vallarta",
+      "Contenido orgánico en TikTok con look & feel premium",
+      "Narrativa visual del producto en contexto turístico real",
+      "Orientado a interés, posicionamiento y leads de renta",
+    ],
+  },
+  {
     id: "drone-campaigns",
     title: "Aerial Brand Campaigns",
     subtitle: "Drones + contenido de alto impacto",
@@ -275,26 +388,6 @@ export const projects: Project[] = [
       "Piezas para redes y locales comerciales",
       "Narrativa de marca + CTA claros",
       "Entrega lista para pauta y orgánicos",
-    ],
-  },
-  {
-    id: "resto-growth",
-    title: "Restaurant Growth Kits",
-    subtitle: "Marketing tech para gastronomía",
-    description:
-      "Campañas y kits creativos que unen tech, menú y posicionamiento.",
-    longDescription:
-      "Paquetes de marketing para restaurantes: creatividades, video y funnel simple. Tecnología al servicio de la demanda — no al revés.",
-    category: "marketing",
-    tags: ["Campaigns", "Content", "Local SEO"],
-    year: "2023",
-    role: "Growth Creative",
-    accent: "#F8B254",
-    features: [
-      "Kits visuales por vertical gastronómica",
-      "Contenido multi-formato (reel, foto, story)",
-      "Mensajes alineados a conversión local",
-      "Medición básica de alcance y respuesta",
     ],
   },
   {
