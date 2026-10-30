@@ -94,18 +94,18 @@ export function Hero() {
           className="mt-8 flex flex-wrap items-center justify-center gap-3"
         >
           <motion.a
-            href="#proyectos"
+            href="#pej-2026"
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center justify-center rounded-full bg-primary px-[22px] py-[11px] text-[17px] font-normal text-white transition-opacity hover:opacity-90"
           >
-            Ver proyectos
+            PEJ 2026
           </motion.a>
           <motion.a
-            href="#contacto"
+            href="#proyectos"
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center justify-center rounded-full border border-primary bg-transparent px-[22px] py-[11px] text-[17px] font-normal text-primary transition-opacity hover:opacity-80"
           >
-            Contactar
+            Ver proyectos
           </motion.a>
         </motion.div>
 
@@ -147,8 +147,8 @@ export function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <a
-          href="#proyectos"
-          aria-label="Ir al escritorio"
+          href="#pej-2026"
+          aria-label="Ir a PEJ 2026"
           className="flex flex-col items-center gap-2 text-ink-muted-48 transition-opacity hover:opacity-70"
         >
           <span className="text-[12px] tracking-[-0.12px]">Explorar</span>

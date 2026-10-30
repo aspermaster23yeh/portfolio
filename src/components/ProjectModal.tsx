@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, animate, motion } from "framer-motion";
 import type { DesktopFolder } from "@/data/folders";
-import type { Project } from "@/data/projects";
+import type { Project, ProjectMedia } from "@/data/projects";
 import { projectsInFolder } from "@/data/projects";
 
 type ProjectModalProps = {
@@ -255,52 +255,9 @@ function ProjectDetail({
 
       {project.media && project.media.length > 0 && (
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
-          {project.media.map((item) => {
-            const card = (
-              <>
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[8px] bg-black/5">
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 320px"
-                    className="object-cover"
-                  />
-                  {item.href && (
-                    <span className="absolute inset-0 flex items-center justify-center bg-black/25 opacity-0 transition-opacity group-hover:opacity-100">
-                      <span className="flex size-11 items-center justify-center rounded-full bg-white/90 text-[15px] text-ink shadow-sm">
-                        ▶
-                      </span>
-                    </span>
-                  )}
-                </div>
-                {item.caption && (
-                  <span className="mt-2.5 block text-[13px] font-medium tracking-[-0.16px] text-primary">
-                    {item.caption} ↗
-                  </span>
-                )}
-              </>
-            );
-
-            return item.href ? (
-              <a
-                key={item.src}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block rounded-[12px] border border-hairline bg-canvas p-2.5 transition-colors hover:bg-pearl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-focus"
-              >
-                {card}
-              </a>
-            ) : (
-              <div
-                key={item.src}
-                className="rounded-[12px] border border-hairline bg-canvas p-2.5"
-              >
-                {card}
-              </div>
-            );
-          })}
+          {project.media.map((item) => (
+            <MediaCard key={item.src} item={item} />
+          ))}
         </div>
       )}
 
@@ -407,6 +364,103 @@ function AboutThisMac({ onClose }: { onClose: () => void }) {
           Cerrar
         </button>
       </div>
+    </div>
+  );
+}
+
+function formatCompactViews(value: number): string {
+  if (value >= 1_000_000) {
+    const m = value / 1_000_000;
+    return `${m % 1 === 0 ? m.toFixed(0) : m.toFixed(1).replace(/\.0$/, "")}M`;
+  }
+  if (value >= 1_000) {
+    const k = value / 1_000;
+    return `${k % 1 === 0 ? k.toFixed(0) : k.toFixed(1).replace(/\.0$/, "")}K`;
+  }
+  return String(value);
+}
+
+function AnimatedStat({
+  value,
+  label,
+}: {
+  value: number;
+  label: string;
+}) {
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    const controls = animate(0, value, {
+      duration: 1.7,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (latest) => setDisplay(Math.round(latest)),
+    });
+    return () => controls.stop();
+  }, [value]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.15, duration: 0.4 }}
+      className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent px-3.5 pb-3.5 pt-12"
+    >
+      <p className="text-[28px] font-semibold tracking-[-0.5px] text-white tabular-nums">
+        {formatCompactViews(display)}
+      </p>
+      <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-white/75">
+        {label}
+      </p>
+    </motion.div>
+  );
+}
+
+function MediaCard({ item }: { item: ProjectMedia }) {
+  const body = (
+    <>
+      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[8px] bg-black/5">
+        <Image
+          src={item.src}
+          alt={item.alt}
+          fill
+          sizes="(max-width: 640px) 100vw, 320px"
+          className="object-cover"
+        />
+        {item.stat && (
+          <AnimatedStat value={item.stat.value} label={item.stat.label} />
+        )}
+        {item.href && (
+          <span className="absolute inset-0 flex items-center justify-center bg-black/25 opacity-0 transition-opacity group-hover:opacity-100">
+            <span className="flex size-11 items-center justify-center rounded-full bg-white/90 text-[15px] text-ink shadow-sm">
+              ▶
+            </span>
+          </span>
+        )}
+      </div>
+      {item.caption && (
+        <span className="mt-2.5 block text-[13px] font-medium tracking-[-0.16px] text-primary">
+          {item.caption} ↗
+        </span>
+      )}
+    </>
+  );
+
+  if (item.href) {
+    return (
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group block rounded-[12px] border border-hairline bg-canvas p-2.5 transition-colors hover:bg-pearl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-focus"
+      >
+        {body}
+      </a>
+    );
+  }
+
+  return (
+    <div className="rounded-[12px] border border-hairline bg-canvas p-2.5">
+      {body}
     </div>
   );
 }

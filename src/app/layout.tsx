@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Michael Robles — CEO de Que Plan App · GDG Leader",
+  title:
+    "Sergio Michael Robles Zambrano — PEJ 2026 · Ciencia y Tecnología",
   description:
-    "Portafolio de Michael Robles (@aspermaster23dev), CEO de Que Plan App y Google Developer Groups Leader desde 2023. Desarrollador full stack — Flutter, Firebase, Vue, Next.js y más.",
-  authors: [{ name: "Michael Robles" }],
+    "Candidato al Premio Estatal de la Juventud 2026 en Desarrollo e Innovación de Mejoras Tecnológicas. GDG Leader Tepic, fundador de Que Plan App y Estado Limpio, InnovaTec / HACKATEC.",
+  authors: [{ name: "Sergio Michael Robles Zambrano" }],
 };
 
 export default function RootLayout({

@@ -12,6 +12,10 @@ export type ProjectMedia = {
   alt: string;
   href?: string;
   caption?: string;
+  stat?: {
+    value: number;
+    label: string;
+  };
 };
 
 export type Project = {
@@ -361,6 +365,10 @@ export const projects: Project[] = [
         alt: "Pieza de TikTok — renta de camionetas de lujo VIP Solutions",
         href: "https://www.tiktok.com/@rentadecamionetasvta/video/7536271982577372472",
         caption: "Ver en TikTok",
+        stat: {
+          value: 354_000,
+          label: "vistas",
+        },
       },
     ],
     features: [
