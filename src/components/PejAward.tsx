@@ -248,21 +248,48 @@ export function PejAward() {
           </ul>
 
           <FadeIn delay={0.1}>
-            <div className="mt-14 flex flex-col gap-4 rounded-[18px] border border-white/10 bg-white/[0.03] px-6 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+            <div className="mt-14 grid gap-8 rounded-[18px] border border-white/10 bg-white/[0.03] px-6 py-8 sm:grid-cols-[1fr_auto] sm:items-center sm:px-8">
               <div>
                 <p className="text-[15px] font-medium text-white">
-                  Postulación PEJ 2026 · autopropuesta individual
+                  Escanea el expediente en HD
                 </p>
-                <p className="mt-1 max-w-md text-[14px] text-white/50">
-                  Expediente respaldado con pruebas documentales, certificados y
-                  evidencia fotográfica de impacto en Nayarit.
+                <p className="mt-1 max-w-md text-[14px] leading-[1.5] text-white/50">
+                  QR al portafolio PEJ 2026 — fotos, reconocimientos y trayectoria
+                  en ciencia y tecnología. Ideal para imprimir o compartir en el
+                  comité.
                 </p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <a
+                    href="/pej/pej-2026-qr-hd.png"
+                    download="PEJ-2026-QR-HD.png"
+                    className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-[14px] font-medium text-ink transition-opacity hover:opacity-90"
+                  >
+                    Descargar QR HD
+                  </a>
+                  <a
+                    href="/pej/pej-2026-qr-poster.png"
+                    download="PEJ-2026-QR-poster.png"
+                    className="inline-flex items-center justify-center rounded-full border border-white/25 px-5 py-2.5 text-[14px] font-medium text-white transition-opacity hover:opacity-80"
+                  >
+                    Poster para imprimir
+                  </a>
+                </div>
               </div>
               <a
-                href="#contacto"
-                className="inline-flex shrink-0 items-center justify-center rounded-full bg-white px-5 py-2.5 text-[14px] font-medium text-ink transition-opacity hover:opacity-90"
+                href="https://portfolio-ten-bice-61.vercel.app/#pej-2026"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="justify-self-center rounded-[16px] bg-white p-3 shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
+                aria-label="Abrir expediente PEJ 2026"
               >
-                Contactar / respaldar
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/pej/pej-2026-qr.png"
+                  alt="Código QR al expediente PEJ 2026"
+                  width={180}
+                  height={180}
+                  className="size-[180px]"
+                />
               </a>
             </div>
           </FadeIn>
